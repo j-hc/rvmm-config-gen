@@ -5,9 +5,9 @@
   function getPkgs(patchesJson) {
     const supportedAppsSet = new Set();
     for (const patch of patchesJson) {
-      if (patch["compatiblePackages"] !== null) {
-        patch["compatiblePackages"]
-          .map((e) => e["name"])
+      if (patch.compatiblePackages !== null) {
+        patch.compatiblePackages
+          .map((e) => e.name)
           .forEach((e) => {
             supportedAppsSet.add(e);
           });
@@ -24,32 +24,6 @@
     });
 
     return supportedApps;
-  }
-
-  async function getPatches(pkgName, patchesJson) {
-    const patches = [];
-    for (const patch of await patchesJson) {
-      for (const pkg of patch["compatiblePackages"] || []) {
-        if (pkg["name"] === pkgName) {
-          const versionsSet = new Set();
-          if (pkg["versions"] !== null) {
-            pkg["versions"].forEach((e) => {
-              versionsSet.add(e);
-            });
-          }
-          const versions = [...versionsSet];
-          const patchC = {
-            ["name"]: patch["name"],
-            ["description"]: patch["description"],
-            ["pkg_versions"]: versions,
-            ["use"]: patch["use"],
-            ["patchOptions"]: patch["options"],
-          };
-          patches.push(patchC);
-        }
-      }
-    }
-    return patches;
   }
 
   const PKG_APPNAME = {
@@ -95,9 +69,9 @@
   let TOML = [];
   let configTOMLVisible = false;
 
-  let patchesJson = fetch(
-    "https://raw.githubusercontent.com/revanced/revanced-patches/main/patches.json"
-  ).then((r) => r.json());
+  let defaultPatchesJson = fetch("https://api.revanced.app/v2/patches/latest")
+    .then((r) => r.json())
+    .then((r) => r.patches || r);
 </script>
 
 <main>
@@ -123,15 +97,37 @@
       </svg>
     </a>
   </div>
-
   <br />
-  <button
-    on:click={() => {
-      configTOMLVisible = !configTOMLVisible;
-    }}
-    class="m-3 mb-5 justify-center items-center space-x-2 border border-gray-300 rounded-md py-2 px-4 bg-white text-sm leading-5 font-medium text-gray-900 hover:text-gray-600 focus:outline-none focus:border-gray-300 focus:ring-blue active:bg-gray-50 active:text-gray-800"
-    >{configTOMLVisible ? "Hide Config" : "Create Config"}</button
-  >
+
+  <div class="flex justify-between">
+    <button
+      on:click={() => {
+        configTOMLVisible = !configTOMLVisible;
+      }}
+      class="m-3 mb-5 justify-center items-center space-x-2 border border-gray-300 rounded-md py-2 px-4 bg-white text-sm leading-5 font-medium text-gray-900 hover:text-gray-600 focus:outline-none focus:border-gray-300 focus:ring-blue active:bg-gray-50 active:text-gray-800"
+      >{configTOMLVisible ? "Hide Config" : "Create Config"}</button
+    >
+    <label
+      for="files"
+      class=" m-3 mb-5 text-xs justify-center items-center space-x-2 border border-gray-300 rounded-md py-2 px-4 bg-white font-medium text-gray-900 hover:text-gray-600 focus:outline-none focus:border-gray-300 focus:ring-blue active:bg-gray-50 active:text-gray-800 ml-auto"
+      >Upload patches.json</label
+    >
+    <input
+      on:change={(e) => {
+        var file = e.target.files[0];
+        var r = new FileReader();
+        r.readAsText(file);
+        r.onload = (re) => {
+          const j = JSON.parse(re.target.result);
+          defaultPatchesJson = Promise.resolve(j.patches || j);
+          TOML = [];
+        };
+      }}
+      id="files"
+      class="hidden"
+      type="file"
+    />
+  </div>
   {#if configTOMLVisible}
     <div
       class="bg-gray-300 rounded-lg mx-4 my-0 border border-gray-400 p-4 text-sm"
@@ -150,6 +146,9 @@
                 "/"
               )[0]}/revanced-integrations"<br />
               rv-brand = "{t.patches_source.split("/")[0]} ReVanced"<br />
+            {/if}
+            {#if t.patches_version !== "latest"}
+              patches-version = "{t.patches_version}"<br />
             {/if}
             {#if t.arch !== "universal"}
               arch = "{t.arch}"<br />
@@ -195,11 +194,11 @@
     </div>
   {/if}
 
-  {#await patchesJson.then((j) => getPkgs(j)) then pkgs}
+  {#await defaultPatchesJson.then((j) => getPkgs(j)) then pkgs}
     {#each pkgs as pkgName, i}
       <RVApp
         {pkgName}
-        revancedPatches={getPatches(pkgName, patchesJson)}
+        {defaultPatchesJson}
         reprName={getReprName(pkgName)}
         apkmirror_dlurl={getApkmirror(pkgName)}
         bind:TOML={TOML[i]}

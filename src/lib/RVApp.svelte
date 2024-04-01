@@ -3,14 +3,16 @@
   import Radio from "./Radio.svelte";
 
   export let pkgName;
+  export let defaultPatchesJson;
   export let reprName;
   export let apkmirror_dlurl = "https://apkmirror.com/apk/";
-  export let revancedPatches;
   export let TOML;
+  export let arch = "universal";
 
   let build_mode;
   let selected_patches = [];
   let app_name;
+  let patches_json_err = null;
 
   $: apkmirror_dlurl = ((u) => {
     if (
@@ -26,56 +28,50 @@
 
   let version = "auto";
   let patches_source = "revanced/revanced-patches";
-  let patches_source_cfg = "revanced/revanced-patches";
+  let patches_version = "latest";
 
-  async function getPatches(pkgName, patchesJson) {
+  function parsePatches(pkgName, patchesJson) {
     const patches = [];
-    for (const patch of await patchesJson) {
-      for (const pkg of patch["compatiblePackages"] || []) {
-        if (pkg["name"] === pkgName) {
+    for (const patch of patchesJson) {
+      for (const pkg of patch.compatiblePackages || []) {
+        if (pkg.name === pkgName) {
           const versionsSet = new Set();
-          if (pkg["versions"] !== null) {
-            pkg["versions"].forEach((e) => {
+          if (pkg.versions !== null) {
+            pkg.versions.forEach((e) => {
               versionsSet.add(e);
             });
           }
           const versions = [...versionsSet];
-          const patchC = {
-            ["name"]: patch["name"],
-            ["description"]: patch["description"],
-            ["pkg_versions"]: versions,
-            ["use"]: patch["use"],
-            ["patchOptions"]: patch["options"],
-          };
-          patches.push(patchC);
+          patches.push({
+            name: patch.name,
+            description: patch.description,
+            pkg_versions: versions,
+            use: patch.use,
+            patchOptions: patch.options,
+          });
         }
       }
     }
     return patches;
   }
 
+  let update_req = false;
   let raw_patches_json;
 
-  let patches = revancedPatches;
-  function patchesOnBlur() {
-    if (patches_source === "revanced/revanced-patches") {
-      patches = revancedPatches;
-    } else {
-      patches_source_cfg = patches_source;
-      let src_path;
-      const src_split = patches_source.split("/").filter(Boolean);
-      if (src_split.length === 2) {
-        src_path = `${patches_source}/HEAD`;
-      } else if (src_split.length === 3) {
-        src_path = patches_source;
-        patches_source_cfg = `${src_split[0]}/${src_split[1]}`
-      }
-      raw_patches_json = `https://raw.githubusercontent.com/${src_path}/patches.json`;
-      fetch(raw_patches_json).then(
-        (r) => (patches = getPatches(pkgName, r.json())),
-      );
-    }
+  function getPatches(_dummy) {
+    update_req = false;
+    raw_patches_json = `https://api.revanced.app/v2/patches/${patches_version}`;
+    const j =
+      patches_version !== "latest"
+        ? fetch(raw_patches_json)
+            .then((r) => r.json())
+            .then((r) => r.patches || r)
+        : defaultPatchesJson;
+
+    return j.then((j) => parsePatches(pkgName, j));
   }
+
+  $: patches = getPatches(update_req);
 
   async function checkValidVersion(version) {
     for (const p of await patches) {
@@ -86,13 +82,11 @@
           p.pkg_versions.length !== 0 && !p.pkg_versions.includes(version);
     }
   }
-
   $: checkValidVersion(version);
 
   let app_name_c = "";
 
   let nodeRef;
-
   $: (() => {
     patches.then((patches) => {
       const inc = [];
@@ -139,7 +133,8 @@
       TOML = {
         app_name: app_name_c,
         apkmirror_dlurl: apkmirror_dlurl,
-        patches_source: patches_source_cfg,
+        patches_source: patches_source,
+        patches_version: patches_version,
         version: version,
         build_mode: build_mode,
         arch: arch,
@@ -155,7 +150,6 @@
 
   let deleted = false;
   let selectedOpts = [];
-  export let arch = "universal";
 </script>
 
 <details
@@ -255,9 +249,28 @@
         class="border-2 rounded border-gray-300 p-0.5 pl-1 w-full"
         size="60"
         bind:value={patches_source}
-        on:blur={patchesOnBlur}
       />
     </label>
+
+    <label
+      >patches version:
+      <input
+        id="patches-version"
+        type="text"
+        class="border-2 rounded border-gray-300 p-0.5 pl-1 w-full"
+        size="60"
+        bind:value={patches_version}
+        on:blur={(() => (update_req = true))()}
+      />
+    </label>
+
+    {#if patches_json_err}
+      <div
+        class="border border-t-0 border-red-200 rounded-b bg-red-100 text-red-400"
+      >
+        {patches_json_err}
+      </div>
+    {/if}
 
     {#await patches then patches}
       <hr class="my-3 border-t border-gray-300" />
