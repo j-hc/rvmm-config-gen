@@ -1,0 +1,25 @@
+name: CI
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 16 * * *"
+
+jobs:
+  check:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name:
+        run: |
+          curl 'https://api.revanced.app/v4/patches/list' -H 'Accept: application/json' > docs/patches.json
+
+      - name: patches
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: master
+          file_pattern: docs/patches.json
+          commit_message: Update patches.json

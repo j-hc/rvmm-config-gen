@@ -6,11 +6,9 @@
     const supportedAppsSet = new Set();
     for (const patch of patchesJson) {
       if (patch.compatiblePackages !== null) {
-        patch.compatiblePackages
-          .map((e) => e.name)
-          .forEach((e) => {
-            supportedAppsSet.add(e);
-          });
+        Object.keys(patch.compatiblePackages).forEach((p) =>
+          supportedAppsSet.add(p),
+        );
       }
     }
     const supportedApps = [...supportedAppsSet];
@@ -69,7 +67,7 @@
   let TOML = [];
   let configTOMLVisible = false;
 
-  let defaultPatchesJson = fetch("https://api.revanced.app/v2/patches/latest")
+  let defaultPatchesJson = fetch("patches.json")
     .then((r) => r.json())
     .then((r) => r.patches || r);
 </script>
@@ -143,7 +141,7 @@
             {#if t.patches_source !== "revanced/revanced-patches"}
               patches-source = "{t.patches_source}"<br />
               integrations-source = "{t.patches_source.split(
-                "/"
+                "/",
               )[0]}/revanced-integrations"<br />
               rv-brand = "{t.patches_source.split("/")[0]} ReVanced"<br />
             {/if}
@@ -168,28 +166,12 @@
             {#if t.exclusive_patches}
               exclusive-patches = {t.exclusive_patches}<br />
             {/if}
+            {#if t.opts.length > 0}
+              patcher-args = "{t.opts}"<br />
+            {/if}
             <br />
           {/if}
         {/each}
-      </div>
-    </div>
-
-    <div
-      class="mt-3 bg-gray-300 rounded-lg mx-4 my-0 border border-gray-400 p-4 text-sm"
-    >
-      <CopyBut id={"options-json-text"} />
-
-      <div class="text-gray-600"># options.json</div>
-      <div id="options-json-text">
-        <pre>
-        {(() => {
-            let oo = [];
-            TOML.forEach((t) => {
-              oo = [...oo, ...t.opts];
-            });
-            return "\n" + JSON.stringify(oo, undefined, 2);
-          })()}
-        </pre>
       </div>
     </div>
   {/if}

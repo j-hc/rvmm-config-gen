@@ -33,45 +33,29 @@
   function parsePatches(pkgName, patchesJson) {
     const patches = [];
     for (const patch of patchesJson) {
-      for (const pkg of patch.compatiblePackages || []) {
-        if (pkg.name === pkgName) {
-          const versionsSet = new Set();
-          if (pkg.versions !== null) {
-            pkg.versions.forEach((e) => {
-              versionsSet.add(e);
-            });
-          }
-          const versions = [...versionsSet];
-          patches.push({
-            name: patch.name,
-            description: patch.description,
-            pkg_versions: versions,
-            use: patch.use,
-            patchOptions: patch.options,
+      for (const pkg of Object.keys(patch.compatiblePackages || {})) {
+        if (pkg !== pkgName) continue;
+        const versionsSet = new Set();
+        const pkgVersions = patch.compatiblePackages[pkg];
+        if (pkgVersions !== null) {
+          pkgVersions.forEach((e) => {
+            versionsSet.add(e);
           });
         }
+        const versions = [...versionsSet];
+        patches.push({
+          name: patch.name,
+          description: patch.description,
+          pkg_versions: versions,
+          use: patch.use,
+          patchOptions: patch.options,
+        });
       }
     }
     return patches;
   }
 
-  let update_req = false;
-  let raw_patches_json;
-
-  function getPatches(_dummy) {
-    update_req = false;
-    raw_patches_json = `https://api.revanced.app/v2/patches/${patches_version}`;
-    const j =
-      patches_version !== "latest"
-        ? fetch(raw_patches_json)
-            .then((r) => r.json())
-            .then((r) => r.patches || r)
-        : defaultPatchesJson;
-
-    return j.then((j) => parsePatches(pkgName, j));
-  }
-
-  $: patches = getPatches(update_req);
+  $: patches = defaultPatchesJson.then((j) => parsePatches(pkgName, j));
 
   async function checkValidVersion(version) {
     for (const p of await patches) {
@@ -87,66 +71,62 @@
   let app_name_c = "";
 
   let nodeRef;
-  $: (() => {
-    patches.then((patches) => {
-      const inc = [];
-      const exc = [];
+  $: patches.then((patches) => {
+    const inc = [];
+    const exc = [];
 
-      let exclusive;
-      if (selected_patches.length > patches.length / 2) {
-        exclusive = false;
-        for (const p of patches) {
-          const n = `'${p.name}'`;
-          if (!p.use && selected_patches.includes(p)) {
-            inc.push(n);
-          } else if (p.use && !selected_patches.includes(p)) {
-            exc.push(n);
-          }
-        }
-      } else {
-        exclusive = true;
-        selected_patches.forEach((p) => {
-          const n = `'${p.name}'`;
+    let exclusive;
+    if (selected_patches.length > patches.length / 2) {
+      exclusive = false;
+      for (const p of patches) {
+        const n = `'${p.name}'`;
+        if (!p.use && selected_patches.includes(p)) {
           inc.push(n);
-        });
-      }
-
-      const incp = inc.join(" ");
-      const excp = exc.join(" ");
-      if (!app_name) app_name_c = reprName;
-      else app_name_c = app_name;
-
-      const selectedOptsReady = [];
-      for (const [patchName, patchOpt] of Object.entries(selectedOpts)) {
-        let b = true;
-        for (const [_, value] of Object.entries(patchOpt)) {
-          if (value.length > 0) b = false;
+        } else if (p.use && !selected_patches.includes(p)) {
+          exc.push(n);
         }
-        if (b) break;
-        const options = [];
-        for (const [key, value] of Object.entries(patchOpt)) {
-          if (value.length > 0) options.push({ key: key, value: value });
-        }
-        selectedOptsReady.push({ patchName: patchName, options: options });
       }
+    } else {
+      exclusive = true;
+      selected_patches.forEach((p) => {
+        const n = `'${p.name}'`;
+        inc.push(n);
+      });
+    }
 
-      TOML = {
-        app_name: app_name_c,
-        apkmirror_dlurl: apkmirror_dlurl,
-        patches_source: patches_source,
-        patches_version: patches_version,
-        version: version,
-        build_mode: build_mode,
-        arch: arch,
-        included_patches: incp,
-        excluded_patches: excp,
-        exclusive_patches: exclusive,
-        deleted: deleted,
+    const incp = inc.join(" ");
+    const excp = exc.join(" ");
+    if (!app_name) app_name_c = reprName;
+    else app_name_c = app_name;
 
-        opts: selectedOptsReady,
-      };
-    });
-  })();
+    let options = "";
+    for (const [_, patchOpt] of Object.entries(selectedOpts)) {
+      let b = true;
+      for (const [_, value] of Object.entries(patchOpt)) {
+        if (value.length > 0) b = false;
+      }
+      if (b) break;
+      for (const [key, value] of Object.entries(patchOpt)) {
+        if (value.length > 0) options += `-O${key}=${value} `;
+      }
+    }
+
+    TOML = {
+      app_name: app_name_c,
+      apkmirror_dlurl: apkmirror_dlurl,
+      patches_source: patches_source,
+      patches_version: patches_version,
+      version: version,
+      build_mode: build_mode,
+      arch: arch,
+      included_patches: incp,
+      excluded_patches: excp,
+      exclusive_patches: exclusive,
+      deleted: deleted,
+
+      opts: options,
+    };
+  });
 
   let deleted = false;
   let selectedOpts = [];
@@ -260,7 +240,6 @@
         class="border-2 rounded border-gray-300 p-0.5 pl-1 w-full"
         size="60"
         bind:value={patches_version}
-        on:blur={(() => (update_req = true))()}
       />
     </label>
 
@@ -284,7 +263,7 @@
       <div
         class="border border-t-0 border-red-200 rounded-b bg-red-100 text-red-400"
       >
-        Could not fetch patches from {raw_patches_json}
+        Could not fetch patches
       </div>
     {/await}
   </div>
