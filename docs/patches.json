@@ -1351,22 +1351,6 @@
         "options": []
     },
     {
-        "name": "Permanent shuffle",
-        "description": "Permanently remember your shuffle preference even if the playlist ends or another track is played.",
-        "use": false,
-        "dependencies": [],
-        "compatiblePackages": {
-            "com.google.android.apps.youtube.music": [
-                "6.45.54",
-                "6.51.53",
-                "7.01.53",
-                "7.02.52",
-                "7.03.52"
-            ]
-        },
-        "options": []
-    },
-    {
         "name": "Hide category bar",
         "description": "Hides the category bar at the top of the homepage.",
         "use": false,
@@ -1423,7 +1407,8 @@
         "dependencies": [
             "Change package name",
             "ResourcePatch",
-            "BytecodePatch"
+            "BytecodePatch",
+            "Spoof video streams"
         ],
         "compatiblePackages": {
             "com.google.android.apps.youtube.music": null
@@ -1441,6 +1426,18 @@
                 }
             }
         ]
+    },
+    {
+        "name": "Spoof video streams",
+        "description": "Spoofs the client video streams to fix playback.",
+        "use": true,
+        "dependencies": [
+            "ResourcePatch"
+        ],
+        "compatiblePackages": {
+            "com.google.android.apps.youtube.music": null
+        },
+        "options": []
     },
     {
         "name": "Unlock pro",
@@ -1483,16 +1480,6 @@
         "dependencies": [],
         "compatiblePackages": {
             "com.wakdev.apps.nfctools.se": null
-        },
-        "options": []
-    },
-    {
-        "name": "Unlock pro",
-        "description": null,
-        "use": true,
-        "dependencies": [],
-        "compatiblePackages": {
-            "com.awedea.nyx": null
         },
         "options": []
     },
@@ -3386,6 +3373,22 @@
         "options": []
     },
     {
+        "name": "Open videos fullscreen",
+        "description": "Adds an option to open videos in full screen portrait mode.",
+        "use": true,
+        "dependencies": [
+            "BytecodePatch",
+            "BytecodePatch",
+            "ResourcePatch"
+        ],
+        "compatiblePackages": {
+            "com.google.android.youtube": [
+                "19.46.42"
+            ]
+        },
+        "options": []
+    },
+    {
         "name": "Custom player overlay opacity",
         "description": "Adds an option to change the opacity of the video player background when player controls are visible.",
         "use": true,
@@ -3848,29 +3851,6 @@
         "options": []
     },
     {
-        "name": "Spoof video streams",
-        "description": "Spoofs the client video streams to allow video playback.",
-        "use": true,
-        "dependencies": [
-            "BytecodePatch",
-            "ResourcePatch",
-            "BytecodePatch"
-        ],
-        "compatiblePackages": {
-            "com.google.android.youtube": [
-                "18.38.44",
-                "18.49.37",
-                "19.16.39",
-                "19.25.37",
-                "19.34.42",
-                "19.43.41",
-                "19.45.38",
-                "19.46.42"
-            ]
-        },
-        "options": []
-    },
-    {
         "name": "GmsCore support",
         "description": "Allows patched Google apps to run without root and under a different package name by using GmsCore instead of Google Play Services.",
         "use": true,
@@ -3955,6 +3935,29 @@
     {
         "name": "Remove tracking query parameter",
         "description": "Adds an option to remove the tracking info from links you share.",
+        "use": true,
+        "dependencies": [
+            "BytecodePatch",
+            "BytecodePatch",
+            "ResourcePatch"
+        ],
+        "compatiblePackages": {
+            "com.google.android.youtube": [
+                "18.38.44",
+                "18.49.37",
+                "19.16.39",
+                "19.25.37",
+                "19.34.42",
+                "19.43.41",
+                "19.45.38",
+                "19.46.42"
+            ]
+        },
+        "options": []
+    },
+    {
+        "name": "Spoof video streams",
+        "description": "Spoofs the client video streams to fix playback.",
         "use": true,
         "dependencies": [
             "BytecodePatch",
