@@ -792,8 +792,8 @@
         "options": []
     },
     {
-        "name": "Change data directory location",
-        "description": "Changes the data directory in the application from the app internal storage directory to /sdcard/android/data accessible by root-less devices.Using this patch can cause unexpected issues with some apps.",
+        "name": "Export internal data documents provider",
+        "description": "Exports a documents provider that grants access to the internal data directory of this app to file managers and other apps that support the Storage Access Framework.",
         "use": false,
         "dependencies": [
             "BytecodePatch"
@@ -856,6 +856,24 @@
                 "values": {
                     "Default": "Default"
                 }
+            },
+            {
+                "key": "updatePermissions",
+                "title": "Update permissions",
+                "description": "Update compatibility receiver permissions. Enabling this can fix installation errors, but this can also break features in certain apps.",
+                "required": false,
+                "type": "kotlin.Boolean",
+                "default": false,
+                "values": null
+            },
+            {
+                "key": "updateProviders",
+                "title": "Update providers",
+                "description": "Update provider names declared by the app. Enabling this can fix installation errors, but this can also break features in certain apps.",
+                "required": false,
+                "type": "kotlin.Boolean",
+                "default": false,
+                "values": null
             }
         ]
     },
@@ -1386,7 +1404,9 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": null
+            "com.google.android.apps.youtube.music": [
+                "7.29.52"
+            ]
         },
         "options": []
     },
@@ -2400,11 +2420,7 @@
             "ResourcePatch"
         ],
         "compatiblePackages": {
-            "tv.twitch.android.app": [
-                "15.4.1",
-                "16.1.0",
-                "16.9.1"
-            ]
+            "tv.twitch.android.app": null
         },
         "options": []
     },
@@ -2418,11 +2434,7 @@
             "Settings"
         ],
         "compatiblePackages": {
-            "tv.twitch.android.app": [
-                "15.4.1",
-                "16.1.0",
-                "16.9.1"
-            ]
+            "tv.twitch.android.app": null
         },
         "options": []
     },
@@ -2455,11 +2467,7 @@
             "ResourcePatch"
         ],
         "compatiblePackages": {
-            "tv.twitch.android.app": [
-                "15.4.1",
-                "16.1.0",
-                "16.9.1"
-            ]
+            "tv.twitch.android.app": null
         },
         "options": []
     },
@@ -2472,11 +2480,7 @@
             "ResourcePatch"
         ],
         "compatiblePackages": {
-            "tv.twitch.android.app": [
-                "15.4.1",
-                "16.1.0",
-                "16.9.1"
-            ]
+            "tv.twitch.android.app": null
         },
         "options": []
     },
@@ -2504,11 +2508,7 @@
             "ResourcePatch"
         ],
         "compatiblePackages": {
-            "tv.twitch.android.app": [
-                "15.4.1",
-                "16.1.0",
-                "16.9.1"
-            ]
+            "tv.twitch.android.app": null
         },
         "options": []
     },
