@@ -1428,7 +1428,7 @@
             "Change package name",
             "ResourcePatch",
             "BytecodePatch",
-            "Spoof video streams"
+            "Spoof client"
         ],
         "compatiblePackages": {
             "com.google.android.apps.youtube.music": null
@@ -1448,11 +1448,12 @@
         ]
     },
     {
-        "name": "Spoof video streams",
-        "description": "Spoofs the client video streams to fix playback.",
+        "name": "Spoof client",
+        "description": "Spoofs the client to fix playback.",
         "use": true,
         "dependencies": [
-            "ResourcePatch"
+            "BytecodePatch",
+            "BytecodePatch"
         ],
         "compatiblePackages": {
             "com.google.android.apps.youtube.music": null
@@ -2449,11 +2450,7 @@
             "BytecodePatch"
         ],
         "compatiblePackages": {
-            "tv.twitch.android.app": [
-                "15.4.1",
-                "16.1.0",
-                "16.9.1"
-            ]
+            "tv.twitch.android.app": null
         },
         "options": []
     },
@@ -3014,7 +3011,8 @@
             "BytecodePatch",
             "BytecodePatch",
             "ResourcePatch",
-            "BytecodePatch"
+            "BytecodePatch",
+            "ResourcePatch"
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
@@ -3983,6 +3981,29 @@
         "description": "Adds an option to disable haptics when zooming.",
         "use": true,
         "dependencies": [
+            "BytecodePatch",
+            "ResourcePatch"
+        ],
+        "compatiblePackages": {
+            "com.google.android.youtube": [
+                "18.38.44",
+                "18.49.37",
+                "19.16.39",
+                "19.25.37",
+                "19.34.42",
+                "19.43.41",
+                "19.45.38",
+                "19.46.42"
+            ]
+        },
+        "options": []
+    },
+    {
+        "name": "Force original audio",
+        "description": "Adds an option to always use the original audio track.",
+        "use": true,
+        "dependencies": [
+            "BytecodePatch",
             "BytecodePatch",
             "ResourcePatch"
         ],
