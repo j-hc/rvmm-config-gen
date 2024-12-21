@@ -3377,6 +3377,7 @@
         "dependencies": [
             "BytecodePatch",
             "BytecodePatch",
+            "ResourcePatch",
             "ResourcePatch"
         ],
         "compatiblePackages": {
@@ -3468,6 +3469,32 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
+                "18.49.37",
+                "19.16.39",
+                "19.25.37",
+                "19.34.42",
+                "19.43.41",
+                "19.45.38",
+                "19.46.42"
+            ]
+        },
+        "options": []
+    },
+    {
+        "name": "Open Shorts in regular player",
+        "description": "Adds options to open Shorts in the regular video player.",
+        "use": true,
+        "dependencies": [
+            "BytecodePatch",
+            "BytecodePatch",
+            "ResourcePatch",
+            "BytecodePatch",
+            "BytecodePatch",
+            "ResourcePatch"
+        ],
+        "compatiblePackages": {
+            "com.google.android.youtube": [
+                "18.38.44",
                 "18.49.37",
                 "19.16.39",
                 "19.25.37",
