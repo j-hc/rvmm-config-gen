@@ -3907,6 +3907,7 @@
         "description": "Checks if the device DNS server is preventing user watch history from being saved.",
         "use": true,
         "dependencies": [
+            "BytecodePatch",
             "ResourcePatch"
         ],
         "compatiblePackages": {
