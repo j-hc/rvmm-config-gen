@@ -4083,7 +4083,7 @@
     },
     {
         "name": "Force original audio",
-        "description": "Adds an option to always use the original audio track. This patch does nothing if 'Spoof video streams' is enabled.",
+        "description": "Adds an option to always use the original audio track.",
         "use": true,
         "dependencies": [
             "BytecodePatch",
