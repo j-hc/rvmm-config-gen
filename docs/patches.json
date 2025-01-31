@@ -2177,7 +2177,9 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.swisssign.swissid.mobile": null
+            "com.swisssign.swissid.mobile": [
+                "5.2.9"
+            ]
         },
         "options": []
     },
@@ -3697,6 +3699,7 @@
             "BytecodePatch",
             "BytecodePatch",
             "ResourcePatch",
+            "ResourcePatch",
             "BytecodePatch",
             "BytecodePatch",
             "ResourcePatch"
@@ -4110,6 +4113,30 @@
     {
         "name": "Force original audio",
         "description": "Adds an option to always use the original audio track.",
+        "use": true,
+        "dependencies": [
+            "BytecodePatch",
+            "BytecodePatch",
+            "ResourcePatch"
+        ],
+        "compatiblePackages": {
+            "com.google.android.youtube": [
+                "18.38.44",
+                "18.49.37",
+                "19.16.39",
+                "19.25.37",
+                "19.34.42",
+                "19.43.41",
+                "19.45.38",
+                "19.46.42",
+                "19.47.53"
+            ]
+        },
+        "options": []
+    },
+    {
+        "name": "Disable HDR video",
+        "description": "Adds an option to disable video HDR.",
         "use": true,
         "dependencies": [
             "BytecodePatch",
