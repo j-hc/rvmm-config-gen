@@ -909,7 +909,7 @@
     },
     {
         "name": "Change version code",
-        "description": "Changes the version code of the app. By default the highest version code is set. This allows older versions of an app to be installed if their version code is set to the same or a higher value and can stop app stores to update the app.",
+        "description": "Changes the version code of the app. This will turn off app store updates and allows downgrading an existing app install to an older app version.",
         "use": false,
         "dependencies": [],
         "compatiblePackages": null,
@@ -917,7 +917,7 @@
             {
                 "key": "versionCode",
                 "title": "Version code",
-                "description": "The version code to use",
+                "description": "The version code to use. Using the highest value turns off app store updates and allows downgrading an existing app install to an older app version.",
                 "required": true,
                 "type": "kotlin.Int",
                 "default": 2147483647,
@@ -1786,7 +1786,8 @@
         "dependencies": [],
         "compatiblePackages": {
             "ml.docilealligator.infinityforreddit": null,
-            "ml.docilealligator.infinityforreddit.plus": null
+            "ml.docilealligator.infinityforreddit.plus": null,
+            "ml.docilealligator.infinityforreddit.patreon": null
         },
         "options": [
             {
@@ -1809,7 +1810,8 @@
         ],
         "compatiblePackages": {
             "ml.docilealligator.infinityforreddit": null,
-            "ml.docilealligator.infinityforreddit.plus": null
+            "ml.docilealligator.infinityforreddit.plus": null,
+            "ml.docilealligator.infinityforreddit.patreon": null
         },
         "options": []
     },
@@ -2167,6 +2169,16 @@
         "dependencies": [],
         "compatiblePackages": {
             "com.spotify.lite": null
+        },
+        "options": []
+    },
+    {
+        "name": "Spoof signature",
+        "description": "Spoofs the signature of the app to fix various functions of the app.",
+        "use": true,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.spotify.music": null
         },
         "options": []
     },
@@ -2823,8 +2835,8 @@
         "options": []
     },
     {
-        "name": "Seekbar tapping",
-        "description": "Adds an option to enable tap-to-seek on the seekbar of the video player.",
+        "name": "Enable tap to seek",
+        "description": "Adds an option to enable tap to seek on the seekbar of the video player.",
         "use": true,
         "dependencies": [
             "BytecodePatch",
@@ -3062,7 +3074,7 @@
     },
     {
         "name": "Hide player overlay buttons",
-        "description": "Adds options to hide the player cast, autoplay, caption button and next/ previous buttons.",
+        "description": "Adds options to hide the player Cast, Autoplay, Captions, and Previous & Next buttons.",
         "use": true,
         "dependencies": [
             "BytecodePatch",
@@ -3090,7 +3102,8 @@
         "dependencies": [
             "BytecodePatch",
             "BytecodePatch",
-            "ResourcePatch"
+            "ResourcePatch",
+            "Navigation buttons"
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
@@ -3106,7 +3119,7 @@
         "options": []
     },
     {
-        "name": "Hide endscreen cards",
+        "name": "Hide end screen cards",
         "description": "Adds an option to hide suggested video cards at the end of videos.",
         "use": true,
         "dependencies": [
@@ -3128,7 +3141,7 @@
     },
     {
         "name": "Hide end screen suggested video",
-        "description": "Adds an option to hide the recommended video at the end of each video.",
+        "description": "Adds an option to hide the suggested video at the end of videos.",
         "use": true,
         "dependencies": [
             "BytecodePatch",
@@ -3286,7 +3299,7 @@
     },
     {
         "name": "Hide Shorts components",
-        "description": "Adds options to hide components related to YouTube Shorts.",
+        "description": "Adds options to hide components related to Shorts.",
         "use": true,
         "dependencies": [
             "BytecodePatch",
@@ -3352,7 +3365,7 @@
     },
     {
         "name": "Miniplayer",
-        "description": "Adds options to change the in app minimized player.",
+        "description": "Adds options to change the in-app minimized player.",
         "use": true,
         "dependencies": [
             "BytecodePatch",
@@ -3670,9 +3683,9 @@
             "BytecodePatch",
             "BytecodePatch",
             "ResourcePatch",
+            "BytecodePatch",
+            "BytecodePatch",
             "ResourcePatch",
-            "BytecodePatch",
-            "BytecodePatch",
             "ResourcePatch"
         ],
         "compatiblePackages": {
@@ -3968,7 +3981,7 @@
     },
     {
         "name": "Open links externally",
-        "description": "Adds an option to always open links in your browser instead of in the in-app-browser.",
+        "description": "Adds an option to always open links in your browser instead of the in-app browser.",
         "use": true,
         "dependencies": [
             "BytecodePatch"
@@ -3988,7 +4001,7 @@
     },
     {
         "name": "Remove tracking query parameter",
-        "description": "Adds an option to remove the tracking info from links you share.",
+        "description": "Adds an option to remove the tracking parameter from links you share.",
         "use": true,
         "dependencies": [
             "BytecodePatch",
@@ -4010,7 +4023,7 @@
     },
     {
         "name": "Spoof video streams",
-        "description": "Spoofs the client video streams to fix playback.",
+        "description": "Adds options to spoof the client video streams to fix playback.",
         "use": true,
         "dependencies": [
             "BytecodePatch",
@@ -4097,34 +4110,10 @@
         "options": []
     },
     {
-        "name": "Remember video quality",
-        "description": "Adds an option to remember the last video quality selected.",
+        "name": "Video quality",
+        "description": "Adds options to use the advanced video quality menu and set default video qualities.",
         "use": true,
         "dependencies": [
-            "BytecodePatch",
-            "BytecodePatch",
-            "BytecodePatch",
-            "ResourcePatch"
-        ],
-        "compatiblePackages": {
-            "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
-                "19.34.42",
-                "19.43.41",
-                "19.45.38",
-                "19.46.42",
-                "19.47.53"
-            ]
-        },
-        "options": []
-    },
-    {
-        "name": "Playback speed",
-        "description": "Adds options to customize available playback speeds, remember the last playback speed selected and show a speed dialog button in the video player.",
-        "use": true,
-        "dependencies": [
-            "BytecodePatch",
             "BytecodePatch",
             "BytecodePatch"
         ],
@@ -4142,12 +4131,11 @@
         "options": []
     },
     {
-        "name": "Restore old video quality menu",
-        "description": "Adds an option to restore the old video quality menu with specific video resolution options.",
+        "name": "Playback speed",
+        "description": "Adds options to customize available playback speeds, set default a playback speed, and show a speed dialog button in the video player.",
         "use": true,
         "dependencies": [
             "BytecodePatch",
-            "ResourcePatch",
             "BytecodePatch",
             "BytecodePatch"
         ],
