@@ -2173,8 +2173,8 @@
         "options": []
     },
     {
-        "name": "Spoof signature",
-        "description": "Spoofs the signature of the app to fix various functions of the app.",
+        "name": "Unlock Spotify Premium",
+        "description": "Unlock Spotify Premium features. Server-sided features like downloading songs are still locked.",
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
@@ -2183,12 +2183,10 @@
         "options": []
     },
     {
-        "name": "Premium navbar tab",
-        "description": "Hides the premium tab from the navigation bar.",
+        "name": "Spoof signature",
+        "description": "Spoofs the signature of the app to fix various functions of the app.",
         "use": true,
-        "dependencies": [
-            "ResourcePatch"
-        ],
+        "dependencies": [],
         "compatiblePackages": {
             "com.spotify.music": null
         },
@@ -3515,7 +3513,7 @@
         "options": []
     },
     {
-        "name": "Wide searchbar",
+        "name": "Wide search bar",
         "description": "Adds an option to replace the search icon with a wide search bar. This will hide the YouTube logo when active.",
         "use": true,
         "dependencies": [
