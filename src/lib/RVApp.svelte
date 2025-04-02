@@ -81,7 +81,18 @@
       for (const p of patches) {
         const n = `'${p.name}'`;
         if (!p.use && selected_patches.includes(p)) {
-          inc.push(n);
+          let incAddOpt = false;
+          for (const [patchName, patchOpt] of Object.entries(selectedOpts)) {
+            if (incAddOpt) break;
+            if (patchName !== p.name) continue;
+            for (const [_, value] of Object.entries(patchOpt)) {
+              if (value.length > 0) {
+                incAddOpt = true;
+                break;
+              }
+            }
+          }
+          if (!incAddOpt) inc.push(n);
         } else if (p.use && !selected_patches.includes(p)) {
           exc.push(n);
         }
@@ -99,17 +110,20 @@
     if (!app_name) app_name_c = reprName;
     else app_name_c = app_name;
 
-    let options = "";
-    for (const [_, patchOpt] of Object.entries(selectedOpts)) {
-      let b = true;
-      for (const [_, value] of Object.entries(patchOpt)) {
-        if (value.length > 0) b = false;
-      }
-      if (b) break;
+    let optionsArr = [];
+    let lastPatchName = null;
+    for (const [patchName, patchOpt] of Object.entries(selectedOpts)) {
       for (const [key, value] of Object.entries(patchOpt)) {
-        if (value.length > 0) options += `-O${key}=${value} `;
+        if (value.length > 0) {
+          if (lastPatchName !== patchName) {
+            optionsArr.push(`-e '${patchName}'`);
+            lastPatchName = patchName;
+          }
+          optionsArr.push(`-O${key}=${value}`);
+        }
       }
     }
+    const options = optionsArr.join(" ");
 
     TOML = {
       app_name: app_name_c,
