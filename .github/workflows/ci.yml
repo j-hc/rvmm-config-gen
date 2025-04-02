@@ -9,17 +9,33 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-java@v4
+        with:
+          distribution: "zulu"
+          java-version: "17"
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name:
         run: |
-          curl 'https://api.revanced.app/v4/patches/list' -H 'Accept: application/json' > docs/patches.json
+          r=$(curl -s https://api.github.com/repos/revanced/revanced-patches/releases/latest) || exit 1
+
+          name=$(echo "$r" | jq -r '.assets | .[0] | .name')
+          version_name="${name%.*}"
+
+          if [ "$version_name" = "$(cat docs/version)" ]; then exit 0; fi
+          echo -n "$version_name" >docs/version
+
+          dl_url=$(echo "$r" | jq -r '.assets | .[0] | .browser_download_url')
+          wget "$dl_url" -O "$name"
+
+          java -jar patches-json-gen.jar "$name" "docs/patches.json"
 
       - name: patches
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           branch: master
-          file_pattern: docs/patches.json
+          file_pattern: docs/patches.json docs/version
           commit_message: Update patches.json
