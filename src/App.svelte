@@ -67,6 +67,8 @@
   let TOML = [];
   let configTOMLVisible = false;
 
+  let patchesGenTextVisible = false;
+
   let defaultPatchesJson = fetch("patches.json")
     .then((r) => r.json())
     .then((r) => r.patches || r);
@@ -97,6 +99,14 @@
   </div>
   <br />
 
+  {#if patchesGenTextVisible}
+  <div class="m-3 mb-5 text-xs justify-center items-center space-x-2 border border-gray-300 rounded-md py-2 px-4 bg-white font-medium text-gray">
+  If you don't have a patches.json for a custom bundle of revanced-patches, you can use 
+  <a class="underline" href="https://github.com/j-hc/rvmm-config-gen/raw/refs/heads/master/patches-json-gen.jar">patches-json-gen.jar</a>
+  : <code>java -jar patches-json-gen.jar patches.rvp patches.json</code>
+  </div>
+  {/if}
+
   <div class="flex justify-between">
     <button
       on:click={() => {
@@ -107,10 +117,11 @@
     >
     <label
       for="files"
-      class=" m-3 mb-5 text-xs justify-center items-center space-x-2 border border-gray-300 rounded-md py-2 px-4 bg-white font-medium text-gray-900 hover:text-gray-600 focus:outline-none focus:border-gray-300 focus:ring-blue active:bg-gray-50 active:text-gray-800 ml-auto"
+      class="m-3 mb-5 text-xs justify-center items-center space-x-2 border border-gray-300 rounded-md py-2 px-4 bg-white font-medium text-gray-900 hover:text-gray-600 focus:outline-none focus:border-gray-300 focus:ring-blue active:bg-gray-50 active:text-gray-800 ml-auto"
       >Upload patches.json</label
     >
     <input
+      on:click={() => patchesGenTextVisible = true }
       on:change={(e) => {
         var file = e.target.files[0];
         var r = new FileReader();
