@@ -939,6 +939,16 @@
         "options": []
     },
     {
+        "name": "Hide ads",
+        "description": null,
+        "use": true,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.drinkplusplus.angulus": null
+        },
+        "options": []
+    },
+    {
         "name": "Pro unlock",
         "description": null,
         "use": true,
@@ -1147,16 +1157,6 @@
         ]
     },
     {
-        "name": "Restore hidden 'Back up while charging' toggle",
-        "description": "Restores a hidden toggle to only run backups when the device is charging.",
-        "use": true,
-        "dependencies": [],
-        "compatiblePackages": {
-            "com.google.android.apps.photos": null
-        },
-        "options": []
-    },
-    {
         "name": "Remove device restrictions",
         "description": "Removes restrictions from using the app on any device. Requires mounting patched app over original.",
         "use": true,
@@ -1311,6 +1311,16 @@
     {
         "name": "Disable typing indicator",
         "description": "Disables the indicator while typing a message.",
+        "use": true,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.facebook.orca": null
+        },
+        "options": []
+    },
+    {
+        "name": "Remove Meta AI tab",
+        "description": "Removes the 'Meta AI' tab from the navbar.",
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
@@ -1577,9 +1587,7 @@
             "BytecodePatch"
         ],
         "compatiblePackages": {
-            "com.microblink.photomath": [
-                "8.37.0"
-            ]
+            "com.microblink.photomath": null
         },
         "options": []
     },
@@ -1591,9 +1599,7 @@
             "BytecodePatch"
         ],
         "compatiblePackages": {
-            "com.microblink.photomath": [
-                "8.32.0"
-            ]
+            "com.microblink.photomath": null
         },
         "options": []
     },
@@ -1606,9 +1612,7 @@
             "BytecodePatch"
         ],
         "compatiblePackages": {
-            "com.microblink.photomath": [
-                "8.37.0"
-            ]
+            "com.microblink.photomath": null
         },
         "options": []
     },
@@ -1679,6 +1683,16 @@
         "dependencies": [],
         "compatiblePackages": {
             "jp.pxv.android": null
+        },
+        "options": []
+    },
+    {
+        "name": "Remove 'Sent from' signature",
+        "description": "Removes the 'Sent from Proton Mail mobile' signature from emails.",
+        "use": true,
+        "dependencies": [],
+        "compatiblePackages": {
+            "ch.protonmail.android": null
         },
         "options": []
     },
@@ -2119,9 +2133,11 @@
     },
     {
         "name": "Custom theme",
-        "description": "Applies a custom theme.",
+        "description": "Applies a custom theme (defaults to amoled black)",
         "use": false,
-        "dependencies": [],
+        "dependencies": [
+            "BytecodePatch"
+        ],
         "compatiblePackages": {
             "com.spotify.music": null
         },
@@ -2138,10 +2154,10 @@
             {
                 "key": "backgroundColorSecondary",
                 "title": "Secondary background color",
-                "description": "The secondary background color. (e.g. search box, artist & podcast). Can be a hex color or a resource reference.",
+                "description": "The secondary background color. (e.g. playlist list, player arist, credits). Can be a hex color or a resource reference.",
                 "required": true,
                 "type": "kotlin.String",
-                "default": "#ff282828",
+                "default": "#FF121212",
                 "values": null
             },
             {
@@ -2150,7 +2166,7 @@
                 "description": "The accent color ('Spotify green' by default). Can be a hex color or a resource reference.",
                 "required": true,
                 "type": "kotlin.String",
-                "default": "#ff1ed760",
+                "default": "#FF1ED760",
                 "values": null
             },
             {
@@ -2159,7 +2175,7 @@
                 "description": "The color when accented buttons are pressed, by default slightly darker than accent. Can be a hex color or a resource reference.",
                 "required": true,
                 "type": "kotlin.String",
-                "default": "#ff169c46",
+                "default": "#FF169C46",
                 "values": null
             }
         ]
@@ -2179,6 +2195,7 @@
         "description": "Unlocks Spotify Premium features. Server-sided features like downloading songs are still locked.",
         "use": true,
         "dependencies": [
+            "BytecodePatch",
             "BytecodePatch"
         ],
         "compatiblePackages": {
@@ -2232,9 +2249,7 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.strava": [
-                "320.12"
-            ]
+            "com.strava": null
         },
         "options": []
     },
@@ -2830,77 +2845,15 @@
         "options": []
     },
     {
-        "name": "Disable precise seeking gesture",
-        "description": "Adds an option to disable precise seeking when swiping up on the seekbar.",
+        "name": "Seekbar",
+        "description": "Adds options to disable precise seeking when swiping up on the seekbar, slide to seek instead of playing at 2x speed when pressing and holding, tapping the player seekbar to seek, and hiding the video player seekbar.",
         "use": true,
         "dependencies": [
             "BytecodePatch",
             "BytecodePatch",
-            "ResourcePatch"
-        ],
-        "compatiblePackages": {
-            "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
-                "19.34.42",
-                "19.43.41",
-                "19.47.53",
-                "20.07.39"
-            ]
-        },
-        "options": []
-    },
-    {
-        "name": "Enable tap to seek",
-        "description": "Adds an option to enable tap to seek on the seekbar of the video player.",
-        "use": true,
-        "dependencies": [
             "BytecodePatch",
             "BytecodePatch",
-            "ResourcePatch"
-        ],
-        "compatiblePackages": {
-            "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
-                "19.34.42",
-                "19.43.41",
-                "19.47.53",
-                "20.07.39"
-            ]
-        },
-        "options": []
-    },
-    {
-        "name": "Enable slide to seek",
-        "description": "Adds an option to enable slide to seek instead of playing at 2x speed when pressing and holding in the video player.",
-        "use": true,
-        "dependencies": [
-            "BytecodePatch",
-            "BytecodePatch",
-            "ResourcePatch",
-            "ResourcePatch"
-        ],
-        "compatiblePackages": {
-            "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
-                "19.34.42",
-                "19.43.41",
-                "19.47.53",
-                "20.07.39"
-            ]
-        },
-        "options": []
-    },
-    {
-        "name": "Seekbar thumbnails",
-        "description": "Adds an option to use high quality fullscreen seekbar thumbnails. Patching 19.16.39 adds an option to restore old seekbar thumbnails.",
-        "use": true,
-        "dependencies": [
-            "BytecodePatch",
-            "ResourcePatch",
-            "ResourcePatch"
+            "BytecodePatch"
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
@@ -3193,8 +3146,7 @@
             "BytecodePatch",
             "ResourcePatch",
             "ResourcePatch",
-            "BytecodePatch",
-            "ResourcePatch"
+            "BytecodePatch"
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
@@ -3202,8 +3154,6 @@
                 "19.25.37",
                 "19.34.42",
                 "19.43.41",
-                "19.45.38",
-                "19.46.42",
                 "19.47.53",
                 "20.07.39"
             ]
@@ -3258,28 +3208,6 @@
         "description": "Adds an option to disable rolling number animations of video view count, user likes, and upload time.",
         "use": true,
         "dependencies": [
-            "BytecodePatch",
-            "BytecodePatch",
-            "ResourcePatch"
-        ],
-        "compatiblePackages": {
-            "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
-                "19.34.42",
-                "19.43.41",
-                "19.47.53",
-                "20.07.39"
-            ]
-        },
-        "options": []
-    },
-    {
-        "name": "Hide seekbar",
-        "description": "Adds an option to hide the seekbar.",
-        "use": true,
-        "dependencies": [
-            "BytecodePatch",
             "BytecodePatch",
             "BytecodePatch",
             "ResourcePatch"
@@ -3376,8 +3304,6 @@
                 "19.25.37",
                 "19.34.42",
                 "19.43.41",
-                "19.45.38",
-                "19.46.42",
                 "19.47.53",
                 "20.07.39"
             ]
@@ -3457,7 +3383,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.46.42",
                 "19.47.53",
                 "20.07.39"
             ]
@@ -3658,8 +3583,6 @@
                 "19.25.37",
                 "19.34.42",
                 "19.43.41",
-                "19.45.38",
-                "19.46.42",
                 "19.47.53",
                 "20.07.39"
             ]
@@ -3953,8 +3876,6 @@
                 "19.25.37",
                 "19.34.42",
                 "19.43.41",
-                "19.45.38",
-                "19.46.42",
                 "19.47.53",
                 "20.07.39"
             ]
