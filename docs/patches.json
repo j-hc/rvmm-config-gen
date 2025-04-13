@@ -2195,7 +2195,6 @@
         "description": "Unlocks Spotify Premium features. Server-sided features like downloading songs are still locked.",
         "use": true,
         "dependencies": [
-            "BytecodePatch",
             "BytecodePatch"
         ],
         "compatiblePackages": {
