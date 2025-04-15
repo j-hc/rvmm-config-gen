@@ -908,6 +908,14 @@
         "options": []
     },
     {
+        "name": "Set target SDK version 34",
+        "description": "Changes the target SDK to version 34 (Android 14). For devices running Android 15+, this will disable edge-to-edge display.",
+        "use": false,
+        "dependencies": [],
+        "compatiblePackages": null,
+        "options": []
+    },
+    {
         "name": "Change version code",
         "description": "Changes the version code of the app. This will turn off app store updates and allows downgrading an existing app install to an older app version.",
         "use": false,
@@ -2152,9 +2160,18 @@
                 "values": null
             },
             {
+                "key": "overridePlayerGradientColor",
+                "title": "Override player gradient color",
+                "description": "Apply primary background color to the player gradient color, which changes dynamically with the song.",
+                "required": false,
+                "type": "kotlin.Boolean",
+                "default": false,
+                "values": null
+            },
+            {
                 "key": "backgroundColorSecondary",
                 "title": "Secondary background color",
-                "description": "The secondary background color. (e.g. playlist list, player arist, credits). Can be a hex color or a resource reference.",
+                "description": "The secondary background color. (e.g. playlist list in home, player artist, song credits). Can be a hex color or a resource reference.",
                 "required": true,
                 "type": "kotlin.String",
                 "default": "#FF121212",
@@ -2203,8 +2220,8 @@
         "options": []
     },
     {
-        "name": "Spoof signature",
-        "description": "Spoofs the signature of the app to fix various functions of the app.",
+        "name": "Spoof package info",
+        "description": "Spoofs the package info of the app to fix various functions of the app.",
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
@@ -3747,7 +3764,8 @@
             "BytecodePatch",
             "BytecodePatch",
             "BytecodePatch",
-            "BytecodePatch"
+            "BytecodePatch",
+            "ResourcePatch"
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
