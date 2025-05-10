@@ -1262,7 +1262,9 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.adobe.lrmobile": null
+            "com.adobe.lrmobile": [
+                "10.0.2"
+            ]
         },
         "options": []
     },
@@ -1272,7 +1274,9 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.adobe.lrmobile": null
+            "com.adobe.lrmobile": [
+                "10.0.2"
+            ]
         },
         "options": []
     },
@@ -1598,6 +1602,26 @@
         "options": []
     },
     {
+        "name": "Disable audio ads",
+        "description": null,
+        "use": true,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.pandora.android": null
+        },
+        "options": []
+    },
+    {
+        "name": "Enable unlimited skips",
+        "description": null,
+        "use": true,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.pandora.android": null
+        },
+        "options": []
+    },
+    {
         "name": "Spoof device ID",
         "description": "Spoofs device ID to mitigate manual bans by developers.",
         "use": true,
@@ -1701,6 +1725,20 @@
         "dependencies": [],
         "compatiblePackages": {
             "jp.pxv.android": null
+        },
+        "options": []
+    },
+    {
+        "name": "Skip ads",
+        "description": "Automatically skips video stream ads.",
+        "use": true,
+        "dependencies": [
+            "BytecodePatch"
+        ],
+        "compatiblePackages": {
+            "com.amazon.avod.thirdpartyclient": [
+                "3.0.403.257"
+            ]
         },
         "options": []
     },
@@ -2234,6 +2272,18 @@
         "description": "Spoofs the package info of the app to fix various functions of the app.",
         "use": true,
         "dependencies": [],
+        "compatiblePackages": {
+            "com.spotify.music": null
+        },
+        "options": []
+    },
+    {
+        "name": "Sanitize sharing links",
+        "description": "Removes the tracking query parameters from links before they are shared.",
+        "use": true,
+        "dependencies": [
+            "BytecodePatch"
+        ],
         "compatiblePackages": {
             "com.spotify.music": null
         },
