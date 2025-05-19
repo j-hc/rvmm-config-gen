@@ -1247,6 +1247,18 @@
         "options": []
     },
     {
+        "name": "Disable signature check",
+        "description": "Disables the signature check that causes the app to crash on startup.",
+        "use": true,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.instagram.android": [
+                "378.0.0.52.68"
+            ]
+        },
+        "options": []
+    },
+    {
         "name": "Remove ads",
         "description": null,
         "use": true,
@@ -1572,9 +1584,7 @@
         ],
         "compatiblePackages": {
             "nl.sanomamedia.android.nu": [
-                "11.0.0",
-                "11.0.1",
-                "11.1.0"
+                "11.3.0"
             ]
         },
         "options": []
@@ -2284,6 +2294,16 @@
         "dependencies": [
             "BytecodePatch"
         ],
+        "compatiblePackages": {
+            "com.spotify.music": null
+        },
+        "options": []
+    },
+    {
+        "name": "Fix third party launchers widgets",
+        "description": "Fixes Spotify widgets not working in third party launchers, like Nova Launcher.",
+        "use": true,
+        "dependencies": [],
         "compatiblePackages": {
             "com.spotify.music": null
         },
@@ -3284,6 +3304,29 @@
             "BytecodePatch",
             "BytecodePatch",
             "BytecodePatch",
+            "ResourcePatch"
+        ],
+        "compatiblePackages": {
+            "com.google.android.youtube": [
+                "19.16.39",
+                "19.25.37",
+                "19.34.42",
+                "19.43.41",
+                "19.47.53",
+                "20.07.39",
+                "20.12.46"
+            ]
+        },
+        "options": []
+    },
+    {
+        "name": "Hide related video overlay",
+        "description": "Adds an option to hide the related video overlay shown when swiping up in fullscreen.",
+        "use": true,
+        "dependencies": [
+            "BytecodePatch",
+            "BytecodePatch",
+            "ResourcePatch",
             "ResourcePatch"
         ],
         "compatiblePackages": {
