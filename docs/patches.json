@@ -960,7 +960,9 @@
         "name": "Hide ads",
         "description": null,
         "use": true,
-        "dependencies": [],
+        "dependencies": [
+            "Disable Pairip license check"
+        ],
         "compatiblePackages": {
             "com.drinkplusplus.angulus": null
         },
@@ -1237,16 +1239,6 @@
         "options": []
     },
     {
-        "name": "Hide ads",
-        "description": "Hides ads in stories, discover, profile, etc. An ad can still appear once when refreshing the home feed.",
-        "use": true,
-        "dependencies": [],
-        "compatiblePackages": {
-            "com.instagram.android": null
-        },
-        "options": []
-    },
-    {
         "name": "Disable signature check",
         "description": "Disables the signature check that causes the app to crash on startup.",
         "use": true,
@@ -1331,18 +1323,6 @@
         "options": []
     },
     {
-        "name": "Disable switching emoji to sticker",
-        "description": "Disables switching from emoji to sticker search mode in message input field.",
-        "use": true,
-        "dependencies": [],
-        "compatiblePackages": {
-            "com.facebook.orca": [
-                "439.0.0.29.119"
-            ]
-        },
-        "options": []
-    },
-    {
         "name": "Disable typing indicator",
         "description": "Disables the indicator while typing a message.",
         "use": true,
@@ -1353,12 +1333,25 @@
         "options": []
     },
     {
-        "name": "Remove Meta AI tab",
-        "description": "Removes the 'Meta AI' tab from the navbar.",
+        "name": "Remove Meta AI",
+        "description": "Removes UI elements related to Meta AI.",
+        "use": true,
+        "dependencies": [
+            "BytecodePatch"
+        ],
+        "compatiblePackages": {
+            "com.facebook.orca": null
+        },
+        "options": []
+    },
+    {
+        "name": "Hide ads",
+        "description": null,
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.facebook.orca": null
+            "com.instagram.android": null,
+            "com.instagram.barcelona": null
         },
         "options": []
     },
@@ -1753,6 +1746,16 @@
         "options": []
     },
     {
+        "name": "Rename shared permissions",
+        "description": "Rename certain permissions shared across Amazon apps. Applying this patch can fix installation errors, but can also break features in certain apps.",
+        "use": false,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.amazon.avod.thirdpartyclient": null
+        },
+        "options": []
+    },
+    {
         "name": "Remove 'Sent from' signature",
         "description": "Removes the 'Sent from Proton Mail mobile' signature from emails.",
         "use": true,
@@ -2136,6 +2139,14 @@
         "options": []
     },
     {
+        "name": "Disable Pairip license check",
+        "description": "Disable Play Integrity Protect (Pairip) client-side license check.",
+        "use": false,
+        "dependencies": [],
+        "compatiblePackages": null,
+        "options": []
+    },
+    {
         "name": "Remove file size limit",
         "description": "Allows opening files larger than 2 MB in the text editor.",
         "use": true,
@@ -2256,16 +2267,6 @@
         ]
     },
     {
-        "name": "Enable on demand",
-        "description": "Enables listening to songs on-demand, allowing to play any song from playlists, albums or artists without limitations. This does not remove ads.",
-        "use": true,
-        "dependencies": [],
-        "compatiblePackages": {
-            "com.spotify.lite": null
-        },
-        "options": []
-    },
-    {
         "name": "Unlock Spotify Premium",
         "description": "Unlocks Spotify Premium features. Server-sided features like downloading songs are still locked.",
         "use": true,
@@ -2280,6 +2281,16 @@
     {
         "name": "Spoof package info",
         "description": "Spoofs the package info of the app to fix various functions of the app.",
+        "use": true,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.spotify.music": null
+        },
+        "options": []
+    },
+    {
+        "name": "Fix Facebook login",
+        "description": "Fix logging in with Facebook when the app is patched by always opening the login in a web browser window.",
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
@@ -3638,6 +3649,7 @@
             "ResourcePatch",
             "BytecodePatch",
             "BytecodePatch",
+            "ResourcePatch",
             "ResourcePatch"
         ],
         "compatiblePackages": {
@@ -3928,7 +3940,7 @@
     },
     {
         "name": "Enable debugging",
-        "description": "Adds options for debugging.",
+        "description": "Adds options for debugging and exporting ReVanced logs to the clipboard.",
         "use": true,
         "dependencies": [
             "BytecodePatch",
@@ -4029,6 +4041,27 @@
         ]
     },
     {
+        "name": "Disable haptic feedback",
+        "description": "Adds an option to disable haptic feedback in the player for various actions.",
+        "use": true,
+        "dependencies": [
+            "BytecodePatch",
+            "ResourcePatch"
+        ],
+        "compatiblePackages": {
+            "com.google.android.youtube": [
+                "19.16.39",
+                "19.25.37",
+                "19.34.42",
+                "19.43.41",
+                "19.47.53",
+                "20.07.39",
+                "20.12.46"
+            ]
+        },
+        "options": []
+    },
+    {
         "name": "Bypass URL redirects",
         "description": "Adds an option to bypass URL redirects and open the original URL directly.",
         "use": true,
@@ -4101,27 +4134,6 @@
             "BytecodePatch",
             "BytecodePatch",
             "ResourcePatch",
-            "ResourcePatch"
-        ],
-        "compatiblePackages": {
-            "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
-                "19.34.42",
-                "19.43.41",
-                "19.47.53",
-                "20.07.39",
-                "20.12.46"
-            ]
-        },
-        "options": []
-    },
-    {
-        "name": "Disable zoom haptics",
-        "description": "Adds an option to disable haptics when zooming.",
-        "use": true,
-        "dependencies": [
-            "BytecodePatch",
             "ResourcePatch"
         ],
         "compatiblePackages": {
@@ -4220,18 +4232,6 @@
                 "19.47.53",
                 "20.07.39",
                 "20.12.46"
-            ]
-        },
-        "options": []
-    },
-    {
-        "name": "Unlock premium",
-        "description": null,
-        "use": true,
-        "dependencies": [],
-        "compatiblePackages": {
-            "io.yuka.android": [
-                "4.29"
             ]
         },
         "options": []
