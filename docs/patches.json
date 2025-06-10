@@ -18,6 +18,14 @@
         "options": []
     },
     {
+        "name": "Hide app icon",
+        "description": "Hides the app icon from the Android launcher.",
+        "use": false,
+        "dependencies": [],
+        "compatiblePackages": null,
+        "options": []
+    },
+    {
         "name": "Spoof build info",
         "description": "Spoofs the information about the current build.",
         "use": false,
@@ -1101,6 +1109,16 @@
         ]
     },
     {
+        "name": "Enable DCIM folders backup control",
+        "description": "Disables always on backup for the Camera and other DCIM folders, allowing you to control backup for each folder individually. This will make the app default to having no folders backed up.",
+        "use": false,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.google.android.apps.photos": null
+        },
+        "options": []
+    },
+    {
         "name": "Spoof features",
         "description": "Spoofs the device to enable Google Pixel exclusive features, including unlimited storage.",
         "use": true,
@@ -1325,6 +1343,16 @@
     {
         "name": "Disable typing indicator",
         "description": "Disables the indicator while typing a message.",
+        "use": true,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.facebook.orca": null
+        },
+        "options": []
+    },
+    {
+        "name": "Hide Facebook button",
+        "description": "Hides the Facebook button in the top toolbar.",
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
@@ -2291,7 +2319,7 @@
             },
             {
                 "key": "accentColorPressed",
-                "title": "Pressed dark theme accent color",
+                "title": "Pressed accent color",
                 "description": "The color when accented buttons are pressed, by default slightly darker than accent. Can be a hex color or a resource reference.",
                 "required": true,
                 "type": "kotlin.String",
@@ -3187,7 +3215,7 @@
     },
     {
         "name": "Hide player overlay buttons",
-        "description": "Adds options to hide the player Cast, Autoplay, Captions, and Previous & Next buttons.",
+        "description": "Adds options to hide the player Cast, Autoplay, Captions, Previous & Next buttons, and the player control buttons background.",
         "use": true,
         "dependencies": [
             "BytecodePatch",
@@ -3507,24 +3535,6 @@
             "BytecodePatch",
             "ResourcePatch"
         ],
-        "compatiblePackages": {
-            "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
-                "19.34.42",
-                "19.43.41",
-                "19.47.53",
-                "20.07.39",
-                "20.12.46"
-            ]
-        },
-        "options": []
-    },
-    {
-        "name": "Remove player controls background",
-        "description": "Removes the dark background surrounding the video player controls.",
-        "use": false,
-        "dependencies": [],
         "compatiblePackages": {
             "com.google.android.youtube": [
                 "19.16.39",
