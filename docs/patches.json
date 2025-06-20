@@ -1257,6 +1257,16 @@
         "options": []
     },
     {
+        "name": "Hide ads",
+        "description": null,
+        "use": true,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.instagram.android": null
+        },
+        "options": []
+    },
+    {
         "name": "Disable signature check",
         "description": "Disables the signature check that causes the app to crash on startup.",
         "use": true,
@@ -1369,17 +1379,6 @@
         ],
         "compatiblePackages": {
             "com.facebook.orca": null
-        },
-        "options": []
-    },
-    {
-        "name": "Hide ads",
-        "description": null,
-        "use": true,
-        "dependencies": [],
-        "compatiblePackages": {
-            "com.instagram.android": null,
-            "com.instagram.barcelona": null
         },
         "options": []
     },
@@ -2361,6 +2360,26 @@
         "options": []
     },
     {
+        "name": "Change lyrics provider",
+        "description": "Changes the lyrics provider to a custom one.",
+        "use": false,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.spotify.music": null
+        },
+        "options": [
+            {
+                "key": "lyricsProviderHost",
+                "title": "Lyrics provider host",
+                "description": "The domain name or IP address of a custom lyrics provider.",
+                "required": false,
+                "type": "kotlin.String",
+                "default": "lyrics.natanchiodi.fr",
+                "values": null
+            }
+        ]
+    },
+    {
         "name": "Sanitize sharing links",
         "description": "Removes the tracking query parameters from links before they are shared.",
         "use": true,
@@ -2430,6 +2449,18 @@
         "compatiblePackages": {
             "com.swisssign.swissid.mobile": [
                 "5.2.9"
+            ]
+        },
+        "options": []
+    },
+    {
+        "name": "Hide ads",
+        "description": null,
+        "use": true,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.instagram.barcelona": [
+                "382.0.0.51.85"
             ]
         },
         "options": []
@@ -2919,8 +2950,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -2941,8 +2970,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -2963,8 +2990,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -2985,8 +3010,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3007,8 +3030,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3031,8 +3052,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3053,8 +3072,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3075,8 +3092,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3095,8 +3110,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3141,8 +3154,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3178,8 +3189,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3202,8 +3211,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3225,8 +3232,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3248,8 +3253,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3269,8 +3272,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3290,8 +3291,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3312,8 +3311,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3336,8 +3333,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3358,8 +3353,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3381,8 +3374,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3404,8 +3395,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3426,8 +3415,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3451,8 +3438,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3492,8 +3477,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3515,8 +3498,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3537,8 +3518,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3561,8 +3540,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3600,8 +3577,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3626,8 +3601,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3649,8 +3622,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3672,8 +3643,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3698,8 +3667,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3723,8 +3690,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3747,8 +3712,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3769,8 +3732,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3791,8 +3752,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3817,8 +3776,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3881,8 +3838,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3904,8 +3859,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3925,8 +3878,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3946,8 +3897,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3971,8 +3920,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -3994,8 +3941,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -4016,8 +3961,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -4037,8 +3980,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -4061,8 +4002,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -4094,8 +4033,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -4117,8 +4054,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -4137,8 +4072,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -4159,8 +4092,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -4182,8 +4113,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -4204,8 +4133,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -4226,8 +4153,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -4247,8 +4172,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
@@ -4269,8 +4192,6 @@
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
-                "19.16.39",
-                "19.25.37",
                 "19.34.42",
                 "19.43.41",
                 "19.47.53",
