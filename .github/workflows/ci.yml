@@ -9,6 +9,12 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
+      - name: Clear older runs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh run list -L400 --json databaseId -q '.[].databaseId' | tail -n+10 | xargs -IID gh api "repos/$GITHUB_REPOSITORY/actions/runs/ID" -X DELETE || :
+  
       - uses: actions/setup-java@v4
         with:
           distribution: "zulu"
@@ -18,7 +24,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name:
+      - name: Generate JSON
         run: |
           r=$(curl -s https://api.github.com/repos/revanced/revanced-patches/releases/latest) || exit 1
 
@@ -39,9 +45,3 @@ jobs:
           branch: master
           file_pattern: docs/patches.json docs/version
           commit_message: Update patches.json
-
-      - name: Clear older runs
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh run list -L400 --json databaseId -q '.[].databaseId' | tail -n+10 | xargs -IID gh api "repos/$GITHUB_REPOSITORY/actions/runs/ID" -X DELETE || :
