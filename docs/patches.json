@@ -831,7 +831,7 @@
             {
                 "key": "replacements",
                 "title": "Replacements",
-                "description": "Hexadecimal patterns to search for and replace with another in a target file.\n\nA pattern is a sequence of case insensitive strings, each representing hexadecimal bytes, separated by spaces.\nAn example pattern is 'aa 01 02 FF'.\n\nEvery pattern must be followed by a pipe ('|'), the replacement pattern,\nanother pipe ('|'), and the path to the file to make the changes in relative to the APK root. \nThe replacement pattern must have the same length as the original pattern.\n\nFull example of a valid input:\n'aa 01 02 FF|00 00 00 00|path/to/file'",
+                "description": "Hexadecimal patterns to search for and replace with another in a target file.\n\nA pattern is a sequence of case insensitive strings, each representing hexadecimal bytes, separated by spaces.\nAn example pattern is 'aa 01 02 FF'.\n\nEvery pattern must be followed by a pipe ('|'), the replacement pattern,\nanother pipe ('|'), and the path to the file to make the changes in relative to the APK root. \nThe replacement pattern must be shorter or equal in length to the pattern.\n\nFull example of a valid replacement:\n'01 02 aa FF|03 04|path/to/file'",
                 "required": true,
                 "type": "kotlin.collections.List<kotlin.String>",
                 "default": null,
@@ -926,6 +926,24 @@
         "options": []
     },
     {
+        "name": "Enable ROM signature spoofing",
+        "description": "Spoofs the signature via the manifest meta-data \"fake-signature\". This patch only works with ROMs that support signature spoofing.",
+        "use": false,
+        "dependencies": [],
+        "compatiblePackages": null,
+        "options": [
+            {
+                "key": "signatureOrApkFilePath",
+                "title": "Signature or APK file path",
+                "description": "The hex-encoded signature or path to an APK file with the desired signature.",
+                "required": true,
+                "type": "kotlin.String",
+                "default": null,
+                "values": null
+            }
+        ]
+    },
+    {
         "name": "Set target SDK version 34",
         "description": "Changes the target SDK to version 34 (Android 14). For devices running Android 15+, this will disable edge-to-edge display.",
         "use": false,
@@ -977,16 +995,6 @@
         "options": []
     },
     {
-        "name": "Pro unlock",
-        "description": null,
-        "use": true,
-        "dependencies": [],
-        "compatiblePackages": {
-            "com.backdrops.wallpapers": null
-        },
-        "options": []
-    },
-    {
         "name": "Remove play limits",
         "description": "Disables purchase nagging and playback limits of not purchased tracks.",
         "use": true,
@@ -1003,6 +1011,30 @@
         "dependencies": [],
         "compatiblePackages": {
             "it.ipzs.cieid": null
+        },
+        "options": []
+    },
+    {
+        "name": "Hide ads",
+        "description": null,
+        "use": true,
+        "dependencies": [
+            "BytecodePatch"
+        ],
+        "compatiblePackages": {
+            "com.cricbuzz.android": [
+                "6.24.01"
+            ]
+        },
+        "options": []
+    },
+    {
+        "name": "Hide ads",
+        "description": null,
+        "use": true,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.crunchyroll.crunchyroid": null
         },
         "options": []
     },
@@ -1272,9 +1304,7 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.instagram.android": [
-                "378.0.0.52.68"
-            ]
+            "com.instagram.android": null
         },
         "options": []
     },
@@ -1295,7 +1325,7 @@
         "dependencies": [],
         "compatiblePackages": {
             "com.adobe.lrmobile": [
-                "10.0.2"
+                "9.3.0"
             ]
         },
         "options": []
@@ -1307,7 +1337,7 @@
         "dependencies": [],
         "compatiblePackages": {
             "com.adobe.lrmobile": [
-                "10.0.2"
+                "9.3.0"
             ]
         },
         "options": []
@@ -1410,10 +1440,7 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": [
-                "7.16.53",
-                "8.05.51"
-            ]
+            "com.google.android.apps.youtube.music": null
         },
         "options": []
     },
@@ -1423,10 +1450,7 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": [
-                "7.16.53",
-                "8.05.51"
-            ]
+            "com.google.android.apps.youtube.music": null
         },
         "options": []
     },
@@ -1436,10 +1460,7 @@
         "use": false,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": [
-                "7.16.53",
-                "8.05.51"
-            ]
+            "com.google.android.apps.youtube.music": null
         },
         "options": []
     },
@@ -1449,10 +1470,7 @@
         "use": false,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": [
-                "7.16.53",
-                "8.05.51"
-            ]
+            "com.google.android.apps.youtube.music": null
         },
         "options": []
     },
@@ -1462,10 +1480,7 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": [
-                "7.16.53",
-                "8.05.51"
-            ]
+            "com.google.android.apps.youtube.music": null
         },
         "options": []
     },
@@ -1475,10 +1490,7 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": [
-                "7.16.53",
-                "8.05.51"
-            ]
+            "com.google.android.apps.youtube.music": null
         },
         "options": []
     },
@@ -1488,10 +1500,7 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": [
-                "7.16.53",
-                "8.05.51"
-            ]
+            "com.google.android.apps.youtube.music": null
         },
         "options": []
     },
@@ -1501,10 +1510,7 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": [
-                "7.16.53",
-                "8.05.51"
-            ]
+            "com.google.android.apps.youtube.music": null
         },
         "options": []
     },
@@ -1544,10 +1550,7 @@
             "BytecodePatch"
         ],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": [
-                "7.16.53",
-                "8.05.51"
-            ]
+            "com.google.android.apps.youtube.music": null
         },
         "options": []
     },
@@ -1586,16 +1589,6 @@
         "options": []
     },
     {
-        "name": "Unlock pro",
-        "description": null,
-        "use": true,
-        "dependencies": [],
-        "compatiblePackages": {
-            "com.wakdev.apps.nfctools.se": null
-        },
-        "options": []
-    },
-    {
         "name": "Hide ads",
         "description": "Hide ads and sponsored articles in list pages and remove pre-roll ads on videos.",
         "use": true,
@@ -1603,9 +1596,7 @@
             "BytecodePatch"
         ],
         "compatiblePackages": {
-            "nl.sanomamedia.android.nu": [
-                "11.3.0"
-            ]
+            "nl.sanomamedia.android.nu": null
         },
         "options": []
     },
@@ -1628,6 +1619,16 @@
             "de.simon.openinghours": [
                 "1.0"
             ]
+        },
+        "options": []
+    },
+    {
+        "name": "Remove root detection",
+        "description": "Removes the check for root permissions.",
+        "use": true,
+        "dependencies": [],
+        "compatiblePackages": {
+            "com.nousguide.android.orftvthek": null
         },
         "options": []
     },
@@ -1754,7 +1755,9 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "jp.pxv.android": null
+            "jp.pxv.android": [
+                "6.141.1"
+            ]
         },
         "options": []
     },
@@ -1767,7 +1770,7 @@
         ],
         "compatiblePackages": {
             "com.amazon.avod.thirdpartyclient": [
-                "3.0.403.257"
+                "3.0.412.2947"
             ]
         },
         "options": []
@@ -1779,6 +1782,20 @@
         "dependencies": [],
         "compatiblePackages": {
             "com.amazon.avod.thirdpartyclient": null
+        },
+        "options": []
+    },
+    {
+        "name": "Playback speed",
+        "description": "Adds playback speed controls to the video player.",
+        "use": true,
+        "dependencies": [
+            "BytecodePatch"
+        ],
+        "compatiblePackages": {
+            "com.amazon.avod.thirdpartyclient": [
+                "3.0.412.2947"
+            ]
         },
         "options": []
     },
@@ -1832,7 +1849,9 @@
         "name": "Spoof client",
         "description": "Restores functionality of the app by using custom client ID.",
         "use": true,
-        "dependencies": [],
+        "dependencies": [
+            "BytecodePatch"
+        ],
         "compatiblePackages": {
             "com.onelouder.baconreader": null,
             "com.onelouder.baconreader.premium": null
@@ -2076,6 +2095,7 @@
         "description": "Restores functionality of the app by using custom client ID.",
         "use": true,
         "dependencies": [
+            "BytecodePatch",
             "BytecodePatch"
         ],
         "compatiblePackages": {
@@ -2233,7 +2253,9 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.soundcloud.android": null
+            "com.soundcloud.android": [
+                "2025.05.27-release"
+            ]
         },
         "options": []
     },
@@ -2243,7 +2265,9 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.soundcloud.android": null
+            "com.soundcloud.android": [
+                "2025.05.27-release"
+            ]
         },
         "options": []
     },
@@ -2253,7 +2277,9 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.soundcloud.android": null
+            "com.soundcloud.android": [
+                "2025.05.27-release"
+            ]
         },
         "options": []
     },
@@ -2340,14 +2366,54 @@
         "options": []
     },
     {
-        "name": "Spoof package info",
-        "description": "Spoofs the package info of the app to fix various functions of the app.",
+        "name": "Spoof client",
+        "description": "Spoofs the client to fix various functions of the app.",
         "use": true,
-        "dependencies": [],
+        "dependencies": [
+            "BytecodePatch",
+            "RawResourcePatch"
+        ],
         "compatiblePackages": {
             "com.spotify.music": null
         },
-        "options": []
+        "options": [
+            {
+                "key": "requestListenerPort",
+                "title": "Request listener port",
+                "description": "The port to use for the listener that intercepts and handles spoofed requests. Port must be between 0 and 65535. Do not change this option, if you do not know what you are doing.",
+                "required": false,
+                "type": "kotlin.Int",
+                "default": 4345,
+                "values": null
+            },
+            {
+                "key": "clientVersion",
+                "title": "Client version",
+                "description": "The client version used for spoofing the client token. Do not change this option, if you do not know what you are doing.",
+                "required": false,
+                "type": "kotlin.String",
+                "default": "iphone-9.0.58.558.g200011c",
+                "values": null
+            },
+            {
+                "key": "hardwareMachine",
+                "title": "Hardware machine",
+                "description": "The hardware machine used for spoofing the client token. Do not change this option, if you do not know what you are doing.",
+                "required": false,
+                "type": "kotlin.String",
+                "default": "iPhone16,1",
+                "values": null
+            },
+            {
+                "key": "systemVersion",
+                "title": "System version",
+                "description": "The system version used for spoofing the client token. Do not change this option, if you do not know what you are doing.",
+                "required": false,
+                "type": "kotlin.String",
+                "default": "17.7.2",
+                "values": null
+            }
+        ]
     },
     {
         "name": "Fix Facebook login",
@@ -2705,7 +2771,10 @@
             "ResourcePatch"
         ],
         "compatiblePackages": {
-            "tv.twitch.android.app": null
+            "tv.twitch.android.app": [
+                "16.9.1",
+                "25.3.0"
+            ]
         },
         "options": []
     },
@@ -2719,7 +2788,10 @@
             "Settings"
         ],
         "compatiblePackages": {
-            "tv.twitch.android.app": null
+            "tv.twitch.android.app": [
+                "16.9.1",
+                "25.3.0"
+            ]
         },
         "options": []
     },
@@ -2734,7 +2806,10 @@
             "BytecodePatch"
         ],
         "compatiblePackages": {
-            "tv.twitch.android.app": null
+            "tv.twitch.android.app": [
+                "16.9.1",
+                "25.3.0"
+            ]
         },
         "options": []
     },
@@ -2748,7 +2823,10 @@
             "ResourcePatch"
         ],
         "compatiblePackages": {
-            "tv.twitch.android.app": null
+            "tv.twitch.android.app": [
+                "16.9.1",
+                "25.3.0"
+            ]
         },
         "options": []
     },
@@ -2761,7 +2839,10 @@
             "ResourcePatch"
         ],
         "compatiblePackages": {
-            "tv.twitch.android.app": null
+            "tv.twitch.android.app": [
+                "16.9.1",
+                "25.3.0"
+            ]
         },
         "options": []
     },
@@ -2775,7 +2856,10 @@
             "ResourcePatch"
         ],
         "compatiblePackages": {
-            "tv.twitch.android.app": null
+            "tv.twitch.android.app": [
+                "16.9.1",
+                "25.3.0"
+            ]
         },
         "options": []
     },
@@ -2789,7 +2873,9 @@
             "ResourcePatch"
         ],
         "compatiblePackages": {
-            "tv.twitch.android.app": null
+            "tv.twitch.android.app": [
+                "16.9.1"
+            ]
         },
         "options": []
     },
@@ -2954,7 +3040,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -2974,7 +3061,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -2994,7 +3082,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3014,7 +3103,26 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
+            ]
+        },
+        "options": []
+    },
+    {
+        "name": "Disable double tap actions",
+        "description": "Adds an option to disable player double tap gestures.",
+        "use": true,
+        "dependencies": [
+            "BytecodePatch",
+            "BytecodePatch",
+            "ResourcePatch"
+        ],
+        "compatiblePackages": {
+            "com.google.android.youtube": [
+                "20.07.39",
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3034,7 +3142,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3056,7 +3165,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3076,7 +3186,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3096,7 +3207,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3114,7 +3226,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": [
@@ -3147,10 +3260,11 @@
     },
     {
         "name": "Change header",
-        "description": "Applies a custom header in the top left corner within the app. Defaults to the ReVanced header.",
-        "use": false,
+        "description": "Adds an option to change the header logo in the top left corner of the app.",
+        "use": true,
         "dependencies": [
-            "ResourcePatch"
+            "ResourcePatch",
+            "BytecodePatch"
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
@@ -3158,23 +3272,19 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": [
             {
-                "key": "header",
-                "title": "Header",
-                "description": "The header to apply to the app.\n\nIf a path to a folder is provided, the folder must contain one or more of the following folders, depending on the DPI of the device:\n\n- drawable-xxxhdpi\n- drawable-xxhdpi\n- drawable-xhdpi\n- drawable-hdpi\n- drawable-mdpi\n\nEach of the folders must contain all of the following files:\n\n- yt_wordmark_header_light.png\n- yt_wordmark_header_dark.png\n\nThe image dimensions must be as follows:\n- drawable-xxxhdpi: 512px x 192px\n- drawable-xxhdpi: 387px x 144px\n- drawable-xhdpi: 258px x 96px\n- drawable-hdpi: 194px x 72px\n- drawable-mdpi: 129px x 48px",
-                "required": true,
+                "key": "custom",
+                "title": "Custom header logo",
+                "description": "Folder with images to use as a custom header logo.\n\nThe folder must contain one or more of the following folders, depending on the DPI of the device:\n- drawable-xxxhdpi\n- drawable-xxhdpi\n- drawable-xhdpi\n- drawable-hdpi\n- drawable-mdpi\n\nEach of the folders must contain all of the following files:\n- custom_header_light.png\n- custom_header_dark.png\n\nThe image dimensions must be as follows:\n- drawable-xxxhdpi: 512px x 192px\n- drawable-xxhdpi: 387px x 144px\n- drawable-xhdpi: 258px x 96px\n- drawable-hdpi: 194px x 72px\n- drawable-mdpi: 129px x 48px",
+                "required": false,
                 "type": "kotlin.String",
-                "default": "revanced*borderless",
-                "values": {
-                    "YouTube": "header*",
-                    "YouTube Premium": "premium*header",
-                    "ReVanced": "revanced*",
-                    "ReVanced (borderless logo)": "revanced*borderless"
-                }
+                "default": null,
+                "values": null
             }
         ]
     },
@@ -3193,7 +3303,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3215,7 +3326,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3236,7 +3348,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3257,7 +3370,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3276,7 +3390,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3295,7 +3410,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3315,7 +3431,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3337,7 +3454,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3357,7 +3475,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3378,7 +3497,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3399,7 +3519,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3419,7 +3540,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3442,7 +3564,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": [
@@ -3467,6 +3590,28 @@
         ]
     },
     {
+        "name": "Disable sign in to TV popup",
+        "description": "Adds an option to disable the popup asking to sign into a TV on the same local network.",
+        "use": true,
+        "dependencies": [
+            "BytecodePatch",
+            "BytecodePatch",
+            "ResourcePatch",
+            "ResourcePatch"
+        ],
+        "compatiblePackages": {
+            "com.google.android.youtube": [
+                "19.34.42",
+                "19.43.41",
+                "19.47.53",
+                "20.07.39",
+                "20.12.46",
+                "20.13.41"
+            ]
+        },
+        "options": []
+    },
+    {
         "name": "Hide timestamp",
         "description": "Adds an option to hide the timestamp in the bottom left of the video player.",
         "use": true,
@@ -3481,7 +3626,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3502,7 +3648,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3522,7 +3669,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3544,7 +3692,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3563,7 +3712,8 @@
             "com.google.android.youtube": [
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3581,7 +3731,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3605,7 +3756,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3626,7 +3778,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3647,7 +3800,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3671,7 +3825,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3694,7 +3849,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3716,7 +3872,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3736,7 +3893,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3756,7 +3914,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3780,7 +3939,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": [
@@ -3842,7 +4002,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3863,7 +4024,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3882,7 +4044,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3901,7 +4064,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3924,7 +4088,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3945,7 +4110,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3965,7 +4131,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -3984,7 +4151,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -4006,7 +4174,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": [
@@ -4037,7 +4206,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -4058,7 +4228,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -4076,7 +4247,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -4096,7 +4268,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -4117,7 +4290,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -4129,6 +4303,7 @@
         "dependencies": [
             "BytecodePatch",
             "BytecodePatch",
+            "ResourcePatch",
             "ResourcePatch"
         ],
         "compatiblePackages": {
@@ -4137,7 +4312,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -4149,7 +4325,8 @@
         "dependencies": [
             "BytecodePatch",
             "BytecodePatch",
-            "ResourcePatch"
+            "ResourcePatch",
+            "BytecodePatch"
         ],
         "compatiblePackages": {
             "com.google.android.youtube": [
@@ -4157,7 +4334,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -4168,6 +4346,7 @@
         "use": true,
         "dependencies": [
             "BytecodePatch",
+            "BytecodePatch",
             "BytecodePatch"
         ],
         "compatiblePackages": {
@@ -4176,7 +4355,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
@@ -4196,7 +4376,8 @@
                 "19.43.41",
                 "19.47.53",
                 "20.07.39",
-                "20.12.46"
+                "20.12.46",
+                "20.13.41"
             ]
         },
         "options": []
