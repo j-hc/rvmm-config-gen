@@ -1479,7 +1479,9 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": null
+            "com.google.android.apps.youtube.music": [
+                "7.29.52"
+            ]
         },
         "options": []
     },
@@ -1489,7 +1491,9 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": null
+            "com.google.android.apps.youtube.music": [
+                "7.29.52"
+            ]
         },
         "options": []
     },
@@ -1499,7 +1503,9 @@
         "use": false,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": null
+            "com.google.android.apps.youtube.music": [
+                "7.29.52"
+            ]
         },
         "options": []
     },
@@ -1509,7 +1515,9 @@
         "use": false,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": null
+            "com.google.android.apps.youtube.music": [
+                "7.29.52"
+            ]
         },
         "options": []
     },
@@ -1519,7 +1527,9 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": null
+            "com.google.android.apps.youtube.music": [
+                "7.29.52"
+            ]
         },
         "options": []
     },
@@ -1529,7 +1539,9 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": null
+            "com.google.android.apps.youtube.music": [
+                "7.29.52"
+            ]
         },
         "options": []
     },
@@ -1539,7 +1551,9 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": null
+            "com.google.android.apps.youtube.music": [
+                "7.29.52"
+            ]
         },
         "options": []
     },
@@ -1549,7 +1563,9 @@
         "use": true,
         "dependencies": [],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": null
+            "com.google.android.apps.youtube.music": [
+                "7.29.52"
+            ]
         },
         "options": []
     },
@@ -1561,7 +1577,7 @@
             "Change package name",
             "ResourcePatch",
             "BytecodePatch",
-            "Spoof client"
+            "Spoof video streams"
         ],
         "compatiblePackages": {
             "com.google.android.apps.youtube.music": null
@@ -1581,15 +1597,18 @@
         ]
     },
     {
-        "name": "Spoof client",
-        "description": "Spoofs the client to fix playback.",
+        "name": "Spoof video streams",
+        "description": "Adds options to spoof the client video streams to fix playback.",
         "use": true,
         "dependencies": [
+            "ResourcePatch",
             "BytecodePatch",
-            "BytecodePatch"
+            "ResourcePatch"
         ],
         "compatiblePackages": {
-            "com.google.android.apps.youtube.music": null
+            "com.google.android.apps.youtube.music": [
+                "7.29.52"
+            ]
         },
         "options": []
     },
@@ -2434,18 +2453,6 @@
                 "values": null
             }
         ]
-    },
-    {
-        "name": "Unlock Premium",
-        "description": "Unlocks Spotify Premium features. Server-sided features like downloading songs are still locked.",
-        "use": true,
-        "dependencies": [
-            "BytecodePatch"
-        ],
-        "compatiblePackages": {
-            "com.spotify.music": null
-        },
-        "options": []
     },
     {
         "name": "Spoof client",
